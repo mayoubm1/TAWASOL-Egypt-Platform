@@ -7,7 +7,7 @@
     <meta name="description" content="TAWASOL Egypt Life Science Technology Park - Awakening ancient Egyptian wisdom to lead the future of life sciences, AI, and quantum research. An 8 billion EGP mega project pioneering sustainable healthcare innovation.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
     <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
-    <script src="https://unpkg.com/three@0.155.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script>
         // Fix for OrbitControls
         if (typeof THREE !== 'undefined' && THREE.OrbitControls === undefined) {
@@ -1135,8 +1135,26 @@
             }, 2000);
         }
 
-        // Initialize when page loads
-        window.addEventListener('load', init);
+        // Supabase Configuration
+        const SUPABASE_URL = 'https://vrfyjirddfdnwuffzqhb.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyZnlqaXJkZGZkbnd1ZmZ6cWhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MDYwNjMsImV4cCI6MjA3NTQ4MjA2M30.glgJwI2yIqUFG8ZtWJk2esxGdXw6nFp5eQ8aANbRAvE';
+        const { createClient } = supabase;
+        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Example of how to use the client (e.g., fetching hub data from a 'hubs' table)
+        async function fetchHubData() {
+            try {
+                const { data, error } = await supabaseClient
+                    .from('hubs')
+                    .select('*');
+                if (error) throw error;
+                console.log('Fetched Hub Data from Supabase:', data);
+                // You would integrate this data into your globe visualization here
+            } catch (error) {
+                console.error('Error fetching hub data from Supabase:', error.message);
+            }
+        }
+        // fetchHubData(); // Uncomment to test fetching data on load
     </script>
 </body>
 </html>
