@@ -49,6 +49,184 @@
             border-bottom: 2px solid var(--gold);
         }
 
+        /* Modern UI Enhancements - Inspired by Magic UI */
+        
+        /* Animated Gradient Text */
+        .gradient-text {
+            background: linear-gradient(45deg, #FFD700, #FFA500, #FF6B35, #FFD700);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        /* Border Beam Effect */
+        .border-beam {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .border-beam::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #FFD700, transparent);
+            animation: borderBeam 2s linear infinite;
+        }
+        
+        @keyframes borderBeam {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        /* Particles Background */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #FFD700;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: particleFloat 6s linear infinite;
+        }
+        
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+        
+        /* Enhanced Glass Morphism */
+        .glass-enhanced {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 20px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-enhanced:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 215, 0, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Interactive Hover Button */
+        .interactive-button {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            color: #000;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .interactive-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .interactive-button:hover::before {
+            left: 100%;
+        }
+        
+        .interactive-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+        
+        /* Enhanced Ministry Cards */
+        .ministry-card-enhanced {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 215, 0, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ministry-card-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .ministry-card-enhanced:hover::before {
+            opacity: 1;
+        }
+        
+        .ministry-card-enhanced:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(255, 215, 0, 0.2);
+        }
+        
+        /* Floating Animation for Icons */
+        .floating-icon {
+            animation: floatingIcon 3s ease-in-out infinite;
+        }
+        
+        @keyframes floatingIcon {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -495,7 +673,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <h1>TAWASOL Egypt</h1>
+            <h1 class="gradient-text morphing-text">TAWASOL Egypt</h1>
             <p class="hero-subtitle">Life Science Technology Park</p>
             <p class="hero-description">
                 Awakening the ancient wisdom of Egypt to lead the future of life sciences. 
@@ -504,8 +682,10 @@
                 humanity its first astronomical charts and medical knowledge, we rise again 
                 to illuminate the path forward.
             </p>
-            <a href="#globe" class="cta-button">Explore Our Digital Nation</a>
+            <a href="#digital-nation" class="interactive-button border-beam">Explore Our Digital Nation</a>
         </div>
+        <!-- Particles Background -->
+        <div class="particles-container" id="particles"></div>
     </section>
 
     <!-- Globe Section -->
@@ -528,61 +708,45 @@
             </p>
         </div>
         <div class="ministries-grid">
-            <div class="ministry-card">
-                <div class="ministry-icon">🌍</div>
-                <h3 class="ministry-title">Foreign Affairs</h3>
-                <p class="ministry-description">
-                    Global 3D Network connecting international partnerships and life science hubs worldwide
-                </p>
+            <div class="ministry-card ministry-card-enhanced border-beam">
+                <div class="ministry-icon floating-icon">🌍</div>
+                <h3>Foreign Affairs</h3>
+                <p>Global 3D Network connecting international partnerships and life science hubs worldwide</p>
             </div>
-            <div class="ministry-card">
-                <div class="ministry-icon">💰</div>
-                <h3 class="ministry-title">Treasury</h3>
-                <p class="ministry-description">
-                    Investor Gateway managing 8 billion EGP investment and funding opportunities
-                </p>
+            <div class="ministry-card ministry-card-enhanced border-beam">
+                <div class="ministry-icon floating-icon">💰</div>
+                <h3>Treasury</h3>
+                <p>Investor Gateway managing 8 billion EGP investment and funding opportunities</p>
             </div>
-            <div class="ministry-card">
-                <div class="ministry-icon">🎓</div>
-                <h3 class="ministry-title">Education</h3>
-                <p class="ministry-description">
-                    Curriculum Hub transforming 250,000 students into active researchers
-                </p>
+            <div class="ministry-card ministry-card-enhanced border-beam">
+                <div class="ministry-icon floating-icon">🎓</div>
+                <h3>Education</h3>
+                <p>Curriculum Hub transforming 250,000 students into active researchers</p>
             </div>
-            <div class="ministry-card">
-                <div class="ministry-icon">🏥</div>
-                <h3 class="ministry-title">Health</h3>
-                <p class="ministry-description">
-                    Telemedicine Platform with 500-bed state-of-the-art hospital complex
-                </p>
+            <div class="ministry-card ministry-card-enhanced border-beam">
+                <div class="ministry-icon floating-icon">🏥</div>
+                <h3>Health</h3>
+                <p>Telemedicine Platform with 500-bed state-of-the-art hospital complex</p>
             </div>
-            <div class="ministry-card">
-                <div class="ministry-icon">🔬</div>
-                <h3 class="ministry-title">Research</h3>
-                <p class="ministry-description">
-                    M2-3M Research System powering quantum computing and genomics research
-                </p>
+            <div class="ministry-card ministry-card-enhanced border-beam">
+                <div class="ministry-icon floating-icon">🔬</div>
+                <h3>Research</h3>
+                <p>M2-3M Research System powering quantum computing and genomics research</p>
             </div>
-            <div class="ministry-card">
-                <div class="ministry-icon">📻</div>
-                <h3 class="ministry-title">Broadcasting</h3>
-                <p class="ministry-description">
-                    Radio/Podcasts Platform sharing knowledge and scientific discoveries
-                </p>
+            <div class="ministry-card ministry-card-enhanced border-beam">
+                <div class="ministry-icon floating-icon">📻</div>
+                <h3>Broadcasting</h3>
+                <p>Radio/Podcasts Platform sharing knowledge and scientific discoveries</p>
             </div>
-            <div class="ministry-card">
-                <div class="ministry-icon">🏥</div>
-                <h3 class="ministry-title">Healthcare Hub</h3>
-                <p class="ministry-description">
-                    Integrated Healthcare Services coordinating comprehensive patient care
-                </p>
+            <div class="ministry-card ministry-card-enhanced border-beam">
+                <div class="ministry-icon floating-icon">🏥</div>
+                <h3>Healthcare Hub</h3>
+                <p>Integrated Healthcare Services coordinating comprehensive patient care</p>
             </div>
-            <div class="ministry-card">
-                <div class="ministry-icon">🤖</div>
-                <h3 class="ministry-title">AI Platform</h3>
-                <p class="ministry-description">
-                    OmniCognitor AI coordination and intelligent system integration
-                </p>
+            <div class="ministry-card ministry-card-enhanced border-beam">
+                <div class="ministry-icon floating-icon">🤖</div>
+                <h3>AI Platform</h3>
+                <p>OmniCognitor AI coordination and intelligent system integration</p>
             </div>
         </div>
     </section>
@@ -765,6 +929,7 @@
         // Initialize the application
         function init() {
             createFloatingHieroglyphs();
+            createParticles();
             initGlobe();
             setupEventListeners();
             animateTimelineItems();
@@ -783,6 +948,20 @@
                 hieroglyph.style.animationDelay = Math.random() * 20 + 's';
                 hieroglyph.style.animationDuration = (15 + Math.random() * 10) + 's';
                 container.appendChild(hieroglyph);
+            }
+        }
+
+        // Create particles background
+        function createParticles() {
+            const container = document.getElementById('particles');
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+                container.appendChild(particle);
             }
         }
 
@@ -1131,9 +1310,21 @@
 
         function hideLoading() {
             setTimeout(() => {
-                document.getElementById('loading').style.display = 'none';
-            }, 2000);
+                const loadingElement = document.getElementById('loading');
+                if (loadingElement) {
+                    loadingElement.style.display = 'none';
+                    console.log('Loading screen hidden successfully');
+                }
+            }, 500); // Reduced from 2000ms to 500ms for faster loading
         }
+
+        // Initialize when page loads
+        window.addEventListener('load', init);
+        
+        // Fallback initialization in case load event doesn't fire
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(init, 100);
+        });
 
         // Supabase Configuration
         const SUPABASE_URL = 'https://vrfyjirddfdnwuffzqhb.supabase.co';
