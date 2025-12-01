@@ -432,6 +432,32 @@
             bottom: -2rem;
         }
 
+        /* Hub Link Styles */
+        .hub-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            color: #000;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+            margin: 4px 0;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .hub-link:hover {
+            background: linear-gradient(135deg, #FFA500, #FFD700);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+            border-color: #FFD700;
+        }
+
+        .hub-actions {
+            margin-top: 20px;
+            text-align: center;
+        }
+
         /* Footer */
         .footer {
             background: var(--night-sky);
@@ -1028,15 +1054,40 @@
         function createEarth() {
             const geometry = new THREE.SphereGeometry(2, 64, 64);
             
-            // Create earth material with enhanced textures
+            // Load high-resolution Earth texture with fallback
+            const textureLoader = new THREE.TextureLoader();
+            
+            // Create earth material with realistic texture
             const material = new THREE.MeshPhongMaterial({
-                color: 0x2233ff,
-                shininess: 100,
-                transparent: true,
-                opacity: 0.9,
+                color: 0x4488bb, // Fallback blue color for Earth
+                shininess: 30,
+                transparent: false,
+                opacity: 1.0,
                 emissive: 0x001122,
-                emissiveIntensity: 0.1
+                emissiveIntensity: 0.05
             });
+
+            // Try to load the texture, but don't fail if it doesn't work
+            textureLoader.load(
+                'earth-texture.jpg',
+                function(texture) {
+                    // Success callback
+                    material.map = texture;
+                    material.needsUpdate = true;
+                    console.log('Earth texture loaded successfully');
+                },
+                function(progress) {
+                    // Progress callback
+                    console.log('Loading texture...', progress);
+                },
+                function(error) {
+                    // Error callback - use procedural Earth-like appearance
+                    console.log('Texture failed to load, using procedural Earth');
+                    material.color.setHex(0x2244aa);
+                    material.emissive.setHex(0x001133);
+                    material.emissiveIntensity = 0.1;
+                }
+            );
             
             globe = new THREE.Mesh(geometry, material);
             globe.castShadow = true;
@@ -1268,6 +1319,30 @@
                     `;
                 }
             }
+
+            // Add website link and external data connections
+            let websiteLink = '';
+            let externalLinks = '';
+            
+            if (hubData.name.includes('TAWASOL')) {
+                websiteLink = `<a href="https://tawasol-egypt-platform-dvcvvr9uh-tawasolnow.vercel.app" target="_blank" class="hub-link">Visit TAWASOL Platform</a>`;
+                externalLinks = `
+                    <div class="hub-detail">
+                        <h4>Connected Platforms</h4>
+                        <p>
+                            <a href="https://preview--egypt-omics-uber.lovable.app/" target="_blank" class="hub-link">Egypt Omics Platform</a><br>
+                            <a href="https://dyh6i3c9o0ll.manus.space" target="_blank" class="hub-link">Telemedicine Hub</a><br>
+                            <a href="https://qjh9iec5vx5p.manus.space" target="_blank" class="hub-link">Research Assistant</a>
+                        </p>
+                    </div>
+                `;
+            } else if (hubData.name.includes('Cambridge')) {
+                websiteLink = `<a href="https://www.crick.ac.uk" target="_blank" class="hub-link">Visit Francis Crick Institute</a>`;
+            } else if (hubData.name.includes('Boston')) {
+                websiteLink = `<a href="https://www.broadinstitute.org" target="_blank" class="hub-link">Visit Broad Institute</a>`;
+            } else if (hubData.name.includes('Singapore')) {
+                websiteLink = `<a href="https://www.a-star.edu.sg/biopolis" target="_blank" class="hub-link">Visit Biopolis</a>`;
+            }
             
             content.innerHTML = `
                 <h3>${hubData.name}</h3>
@@ -1280,6 +1355,10 @@
                     <p>${hubData.description}</p>
                 </div>
                 ${detailsHtml}
+                ${externalLinks}
+                <div class="hub-actions">
+                    ${websiteLink}
+                </div>
             `;
             
             panel.classList.add('active');
