@@ -6,7 +6,41 @@
     <title>TAWASOL Egypt - Life Science Technology Park | Ancient Wisdom, Future Innovation</title>
     <meta name="description" content="TAWASOL Egypt Life Science Technology Park - Awakening ancient Egyptian wisdom to lead the future of life sciences, AI, and quantum research. An 8 billion EGP mega project pioneering sustainable healthcare innovation.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-    <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
+   <script>
+// YOUR REAL SUPABASE PROJECT (already correct)
+const SUPABASE_URL      = "https://vrfyjirddfdnwuffzqhb.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyZnlqaXJkZGZkbnd1ZmZ6cWhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MDYwNjMsImV4cCI6MjA3NTQ4MjA2M30.glgJwI2yIqUFG8ZtWJk2esxGdXw6nFp5eQ8aANbRAvE";
+const BRIDGE            = SUPABASE_URL + "/functions/v1/telstp-bridge-v2";
+
+async function callBridge(action, payload = {}) {
+  const res = await fetch(BRIDGE, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": SUPABASE_ANON_KEY,
+      "Authorization": "Bearer " + SUPABASE_ANON_KEY
+    },
+    body: JSON.stringify({ action, payload })
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    console.error("Bridge error:", text);
+    alert("Error: " + text);
+    return null;
+  }
+
+  return await res.json();
+}
+
+// RUN THIS IMMEDIATELY — YOU WILL SEE YOUR REAL TABLES
+callBridge("get_tables").then(tables => {
+  console.log("REAL TABLES LOADED:", tables);
+  alert("SUCCESS! " + (tables?.length || 0) + " real tables loaded! Check console");
+}).catch(e => console.error(e));
+</script>
+
+<script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script>
         // Fix for OrbitControls
