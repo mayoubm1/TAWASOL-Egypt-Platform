@@ -1103,7 +1103,7 @@ callBridge("get_tables").then(tables => {
 
             // Try to load the texture, but don't fail if it doesn't work
             textureLoader.load(
-                'earth-texture.jpg',
+                'https://res.cloudinary.com/dneamcgig/image/upload/v1751141633/m47pgox2ygxgdg5s6v5t.jpg',
                 function(texture) {
                     // Success callback
                     material.map = texture;
@@ -1432,11 +1432,20 @@ callBridge("get_tables").then(tables => {
         }
 
         // Initialize when page loads
-        window.addEventListener('load', init);
+        let initCalled = false;
+        window.addEventListener('load', () => {
+            if (!initCalled) {
+                initCalled = true;
+                init();
+            }
+        });
         
         // Fallback initialization in case load event doesn't fire
         document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(init, 100);
+            if (!initCalled) {
+                initCalled = true;
+                setTimeout(init, 100);
+            }
         });
 
         // Supabase Configuration
