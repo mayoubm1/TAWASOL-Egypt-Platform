@@ -1083,6 +1083,9 @@ callBridge("get_tables").then(tables => {
             animate();
             
             isGlobeLoaded = true;
+            
+            // Hide loading screen after globe is loaded
+            hideLoading();
         }
 
         function createEarth() {
