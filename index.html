@@ -791,13 +791,13 @@ callBridge("get_tables").then(tables => {
             </div>
             <div class="ministry-card ministry-card-enhanced border-beam">
                 <div class="ministry-icon floating-icon">📊</div>
-                <h3>NUPCO Validated</h3>
-                <p>Anchored in 2,503 tests and 2.59M annual volume validated by national procurement data.</p>
+                <h3>PMO Dashboard</h3>
+                <p>Parallel execution across UAE, KSA, and Egypt hubs with Phase 1 Go-Live by Dec 2026.</p>
             </div>
             <div class="ministry-card ministry-card-enhanced border-beam">
                 <div class="ministry-icon floating-icon">⚡</div>
-                <h3>72-Hour TAT</h3>
-                <p>Eliminating the 7-21 day diagnostic gap with rapid regional repatriation of advanced tests.</p>
+                <h3>Tier 1 Matrix</h3>
+                <p>Full Calibra Tier 1: Steroids, Catecholamines, Trace Metals (ICP-MS), and Amino Acids.</p>
             </div>
             <div class="ministry-card ministry-card-enhanced border-beam">
                 <div class="ministry-icon floating-icon">🏥</div>
@@ -1438,6 +1438,9 @@ callBridge("get_tables").then(tables => {
                 console.warn('Loading element not found');
             }
         }
+
+        // Force hide loading after 3 seconds as a fallback
+        setTimeout(hideLoading, 3000);
 
         // Initialize when page loads
         let initCalled = false;
