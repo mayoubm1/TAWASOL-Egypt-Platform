@@ -6,41 +6,7 @@
     <title>TAWASOL Egypt - Life Science Technology Park | Ancient Wisdom, Future Innovation</title>
     <meta name="description" content="TAWASOL Egypt Life Science Technology Park - Awakening ancient Egyptian wisdom to lead the future of life sciences, AI, and quantum research. An 8 billion EGP mega project pioneering sustainable healthcare innovation.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
-   <script>
-// YOUR REAL SUPABASE PROJECT (already correct)
-const SUPABASE_URL = "https://vrfyjirddfdnwuffzqhb.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZyZnlqaXJkZGZkbnd1ZmZ6cWhiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk5MDYwNjMsImV4cCI6MjA3NTQ4MjA2M30.glgJwI2yIqUFG8ZtWJk2esxGdXw6nFp5eQ8aANbRAvE";
-const BRIDGE = "https://vrfyjirddfdnwuffzqhb.supabase.co/functions/v1/telstp-bridge-v2";
-
-async function callBridge(action, payload = {}) {
-  const res = await fetch(BRIDGE, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "apikey": SUPABASE_ANON_KEY,
-      "Authorization": "Bearer " + SUPABASE_ANON_KEY
-    },
-    body: JSON.stringify({ action, payload })
-  });
-
-  if (!res.ok) {
-    const text = await res.text();
-    console.error("Bridge error:", text);
-    alert("Error: " + text);
-    return null;
-  }
-
-  return await res.json();
-}
-
-// RUN THIS IMMEDIATELY — YOU WILL SEE YOUR REAL TABLES
-callBridge("get_tables").then(tables => {
-  console.log("REAL TABLES LOADED:", tables);
-  alert("SUCCESS! " + (tables?.length || 0) + " real tables loaded! Check console");
-}).catch(e => console.error(e));
-</script>
-
-<script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.155.0/build/three.min.js"></script>
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script>
         // Fix for OrbitControls
@@ -349,6 +315,92 @@ callBridge("get_tables").then(tables => {
             box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
         }
 
+        /* Primary global-network hero */
+        .hero {
+            min-height: 100vh;
+            height: auto;
+            padding: 7rem clamp(1.25rem, 5vw, 5rem) 3rem;
+            display: grid;
+            grid-template-columns: minmax(0, 0.92fr) minmax(360px, 1.08fr);
+            gap: clamp(1.5rem, 4vw, 4.5rem);
+            text-align: left;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            justify-self: end;
+        }
+
+        .hero-network-stage {
+            position: relative;
+            z-index: 2;
+            min-height: min(68vh, 620px);
+            border: 1px solid rgba(255, 215, 0, 0.24);
+            border-radius: 24px;
+            background: radial-gradient(circle at 50% 45%, rgba(31, 104, 183, 0.22), rgba(3, 11, 34, 0.15) 52%, rgba(3, 11, 34, 0.78));
+            box-shadow: 0 25px 75px rgba(0, 0, 0, 0.45), inset 0 0 65px rgba(255, 215, 0, 0.06);
+            overflow: hidden;
+        }
+
+        .hero-network-label {
+            position: absolute;
+            top: 1.2rem;
+            left: 1.2rem;
+            z-index: 3;
+            max-width: 230px;
+            padding: 0.7rem 0.85rem;
+            border: 1px solid rgba(255, 215, 0, 0.34);
+            border-radius: 12px;
+            background: rgba(2, 10, 28, 0.78);
+            color: var(--papyrus);
+            font-size: 0.78rem;
+            line-height: 1.45;
+            letter-spacing: 0.03em;
+        }
+
+        .hero-network-label strong {
+            display: block;
+            margin-bottom: 0.2rem;
+            color: var(--gold);
+            font-size: 0.84rem;
+        }
+
+        #globe-canvas {
+            width: 100%;
+            height: 100%;
+            min-height: min(68vh, 620px);
+            border-radius: 24px;
+        }
+
+        .globe-section {
+            padding: 3.5rem 0 4.5rem;
+            background: var(--night-sky);
+        }
+
+        .network-guidance {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 1.2rem 1.4rem;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--papyrus);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 1100px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 6.5rem;
+                text-align: center;
+            }
+            .hero-content { justify-self: center; }
+            .hero-network-stage { min-height: 440px; }
+            #globe-canvas { min-height: 440px; }
+            .hero h1 { font-size: clamp(2.35rem, 11vw, 3.5rem); }
+        }
+
         /* Globe Container */
         .globe-section {
             padding: 5rem 0;
@@ -372,13 +424,6 @@ callBridge("get_tables").then(tables => {
             margin-bottom: 3rem;
             color: var(--papyrus);
             opacity: 0.8;
-        }
-
-        #globe-canvas {
-            width: 100%;
-            height: 600px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
         /* Ministry Cards */
@@ -464,32 +509,6 @@ callBridge("get_tables").then(tables => {
         .wisdom-quote::after {
             right: -2rem;
             bottom: -2rem;
-        }
-
-        /* Hub Link Styles */
-        .hub-link {
-            display: inline-block;
-            padding: 8px 16px;
-            background: linear-gradient(135deg, #FFD700, #FFA500);
-            color: #000;
-            text-decoration: none;
-            border-radius: 20px;
-            font-weight: 600;
-            margin: 4px 0;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .hub-link:hover {
-            background: linear-gradient(135deg, #FFA500, #FFD700);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-            border-color: #FFD700;
-        }
-
-        .hub-actions {
-            margin-top: 20px;
-            text-align: center;
         }
 
         /* Footer */
@@ -605,6 +624,40 @@ callBridge("get_tables").then(tables => {
         .hub-detail p {
             line-height: 1.6;
             opacity: 0.9;
+        }
+
+        .hub-status {
+            margin: 0.2rem 0 1.2rem;
+            color: var(--gold);
+            font-size: 0.84rem;
+            line-height: 1.4;
+        }
+
+        .hub-link-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+
+        .hub-link {
+            display: block;
+            padding: 0.68rem 0.75rem;
+            border: 1px solid rgba(255, 215, 0, 0.42);
+            border-radius: 9px;
+            color: var(--papyrus);
+            background: rgba(255, 215, 0, 0.07);
+            text-decoration: none;
+            font-size: 0.84rem;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .hub-link:hover { background: rgba(255, 215, 0, 0.16); transform: translateY(-1px); }
+
+        @media (max-width: 480px) {
+            .hub-info-panel { width: min(100%, 380px); right: -100%; top: auto; bottom: 0; transform: none; max-height: 74vh; }
+            .hub-info-panel.active { right: 0; }
+            .hub-link-list { grid-template-columns: 1fr; }
         }
 
         /* Ancient Wisdom Timeline */
@@ -733,29 +786,27 @@ callBridge("get_tables").then(tables => {
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
+            <p class="hero-subtitle">Egyptian Life Science Technology Park</p>
             <h1 class="gradient-text morphing-text">TAWASOL Egypt</h1>
-            <p class="hero-subtitle">Life Science Technology Park</p>
             <p class="hero-description">
-                Awakening the ancient wisdom of Egypt to lead the future of life sciences. 
-                An 8 billion EGP mega project pioneering sustainable healthcare innovation, 
-                quantum research, and AI-driven medical breakthroughs. From the land that gave 
-                humanity its first astronomical charts and medical knowledge, we rise again 
-                to illuminate the path forward.
+                Awakening Egypt’s knowledge legacy through genomics, healthcare, AI and quantum research. Cairo is the anchor of a living global network—built for transparent collaboration, education and life-science innovation.
             </p>
-            <a href="#digital-nation" class="interactive-button border-beam">Explore Our Digital Nation</a>
+            <a href="#globe" class="interactive-button border-beam">Explore the Global Network</a>
+        </div>
+        <div class="hero-network-stage" aria-label="Interactive world network centred on Cairo">
+            <div class="hero-network-label"><strong>Cairo → Global Life Science Network</strong>Drag to explore. Select a luminous hub to open its research context, official site, map and source links.</div>
+            <div id="globe-canvas"></div>
         </div>
         <!-- Particles Background -->
         <div class="particles-container" id="particles"></div>
     </section>
 
-    <!-- Globe Section -->
+    <!-- Global network interaction guide -->
     <section class="globe-section" id="globe">
         <div class="globe-container">
-            <h2 class="section-title">Global Life Science Network</h2>
-            <p class="section-subtitle">
-                Connecting ancient wisdom with modern innovation across continents
-            </p>
-            <div id="globe-canvas"></div>
+            <h2 class="section-title">A Network You Can Navigate</h2>
+            <p class="section-subtitle">Cairo is connected by visible gold routes to life-science ecosystems around the world.</p>
+            <p class="network-guidance">Every illuminated node on the main globe is interactive. Hub profiles distinguish TAWASOL’s project anchor from comparable ecosystems and collaboration targets; they do not represent a confirmed institutional partnership unless publicly documented. Each profile includes direct official and location links for independent exploration.</p>
         </div>
     </section>
 
@@ -897,9 +948,11 @@ callBridge("get_tables").then(tables => {
 
     <script>
         // Global variables
-        let scene, camera, renderer, globe, controls;
+        let scene, camera, renderer, globe, globeGroup, controls;
         let hubs = [];
         let isGlobeLoaded = false;
+        let isGlobeInteracting = false;
+        let appInitialized = false;
 
         // Hub data with comprehensive information
         const hubsData = [
@@ -909,7 +962,10 @@ callBridge("get_tables").then(tables => {
                 lat: 30.0444,
                 lng: 31.2357,
                 type: "flagship",
-                description: "The flagship 8 billion EGP mega project pioneering life science innovation",
+                status: "TAWASOL project anchor",
+                mapsUrl: "https://www.google.com/maps/search/?api=1&query=Cairo%2C%20Egypt",
+                sourceUrl: "https://www.ncbi.nlm.nih.gov/pmc/",
+                description: "The TAWASOL project anchor: a proposed Egyptian life-science, healthcare, education and research ecosystem.",
                 details: {
                     investment: "8 Billion EGP",
                     facilities: "500-bed hospital, Quantum computing center, Biobank facilities, Business incubators (50+ startups)",
@@ -926,8 +982,12 @@ callBridge("get_tables").then(tables => {
                 country: "United Kingdom",
                 lat: 52.2053,
                 lng: 0.1218,
-                type: "partner",
-                description: "Leading European biomedical research hub and strategic partner",
+                type: "network-target",
+                status: "Comparable ecosystem / collaboration target in supplied project materials",
+                officialUrl: "https://cambridge-biomedical.com/",
+                mapsUrl: "https://www.google.com/maps/search/?api=1&query=Cambridge%20Biomedical%20Campus",
+                sourceUrl: "https://cambridge-biomedical.com/research/",
+                description: "A major UK biomedical campus used as a reference ecosystem and collaboration target; not presented here as a confirmed partnership.",
                 details: {
                     specialization: "Biomedical research and development, pharmaceutical innovation",
                     collaboration: "Research methodology sharing, faculty exchange programs, joint degree programs",
@@ -941,8 +1001,12 @@ callBridge("get_tables").then(tables => {
                 country: "Singapore",
                 lat: 1.3521,
                 lng: 103.8198,
-                type: "partner",
-                description: "Asian innovation hub for biotechnology and life sciences",
+                type: "network-target",
+                status: "Comparable ecosystem / collaboration target in supplied project materials",
+                officialUrl: "https://www.jtc.gov.sg/find-space/biopolis",
+                mapsUrl: "https://www.google.com/maps/search/?api=1&query=Biopolis%20Singapore",
+                sourceUrl: "https://www.a-star.edu.sg/",
+                description: "Singapore’s biomedical research and commercialization district, shown as a comparable ecosystem and collaboration target.",
                 details: {
                     specialization: "Biotechnology innovation, commercialization, startup incubation",
                     collaboration: "Asian market expansion, technology transfer, biotech scaling",
@@ -956,8 +1020,12 @@ callBridge("get_tables").then(tables => {
                 country: "United States",
                 lat: 35.8994,
                 lng: -78.8414,
-                type: "partner",
-                description: "Premier US research park focusing on industry-academia collaboration",
+                type: "network-target",
+                status: "Comparable ecosystem / collaboration target in supplied project materials",
+                officialUrl: "https://www.rtp.org/",
+                mapsUrl: "https://www.google.com/maps/search/?api=1&query=Research%20Triangle%20Park",
+                sourceUrl: "https://www.rtp.org/our-community/",
+                description: "A leading US research-park model for industry, academia and commercialization, shown as a collaboration target.",
                 details: {
                     specialization: "Industry-academia collaboration, technology commercialization",
                     collaboration: "Startup development, corporate venture capital, licensing agreements",
@@ -967,12 +1035,16 @@ callBridge("get_tables").then(tables => {
                 }
             },
             {
-                name: "Boston BioMedical Campus",
+                name: "Greater Boston Biotech Ecosystem",
                 country: "United States",
                 lat: 42.3601,
                 lng: -71.0589,
-                type: "partner",
-                description: "Advanced therapeutics and pharmaceutical research center",
+                type: "network-target",
+                status: "Comparable ecosystem / collaboration target in supplied project materials",
+                officialUrl: "https://www.massbio.org/",
+                mapsUrl: "https://www.google.com/maps/search/?api=1&query=Boston%20Massachusetts%20biotechnology",
+                sourceUrl: "https://www.broadinstitute.org/",
+                description: "The Greater Boston life-science ecosystem, including leading genomics and therapeutics institutions, shown as a collaboration target.",
                 details: {
                     specialization: "Advanced therapeutics, drug development, human enzyme production",
                     collaboration: "Joint research in biomedical drug manufacturing, clinical trials",
@@ -988,6 +1060,8 @@ callBridge("get_tables").then(tables => {
 
         // Initialize the application
         function init() {
+            if (appInitialized) return;
+            appInitialized = true;
             createFloatingHieroglyphs();
             createParticles();
             initGlobe();
@@ -1031,8 +1105,12 @@ callBridge("get_tables").then(tables => {
             
             // Scene setup
             scene = new THREE.Scene();
+            globeGroup = new THREE.Group();
+            globeGroup.rotation.y = -2.11; // Present North-East Africa and Cairo toward the viewer on load.
+            scene.add(globeGroup);
             camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
             renderer.setSize(container.clientWidth, container.clientHeight);
             renderer.setClearColor(0x000000, 0);
             renderer.shadowMap.enabled = true;
@@ -1049,7 +1127,7 @@ callBridge("get_tables").then(tables => {
                     enableDamping: true,
                     dampingFactor: 0.05,
                     enableZoom: true,
-                    autoRotate: true,
+                    autoRotate: false,
                     autoRotateSpeed: 0.5,
                     minDistance: 3,
                     maxDistance: 10,
@@ -1083,53 +1161,50 @@ callBridge("get_tables").then(tables => {
             animate();
             
             isGlobeLoaded = true;
-            
-            // Hide loading screen after globe is loaded
-            hideLoading();
         }
 
         function createEarth() {
-            const geometry = new THREE.SphereGeometry(2, 64, 64);
-            
-            // Load high-resolution Earth texture with fallback
-            const textureLoader = new THREE.TextureLoader();
-            
-            // Create earth material with realistic texture
+            const geometry = new THREE.SphereGeometry(2, 96, 96);
+            const earthTextureUrl = 'https://res.cloudinary.com/dneamcgig/image/upload/v1751141633/m47pgox2ygxgdg5s6v5t.jpg';
+
+            // A visible fallback is created first, so the globe stays useful if an external asset is unavailable.
             const material = new THREE.MeshPhongMaterial({
-                color: 0x4488bb, // Fallback blue color for Earth
-                shininess: 30,
-                transparent: false,
-                opacity: 1.0,
-                emissive: 0x001122,
-                emissiveIntensity: 0.05
+                color: 0x183a77,
+                shininess: 18,
+                emissive: 0x020814,
+                emissiveIntensity: 0.18,
+                specular: 0x5577aa
             });
 
-            // Try to load the texture, but don't fail if it doesn't work
-            textureLoader.load(
-                'https://res.cloudinary.com/dneamcgig/image/upload/v1751141633/m47pgox2ygxgdg5s6v5t.jpg',
-                function(texture) {
-                    // Success callback
-                    material.map = texture;
-                    material.needsUpdate = true;
-                    console.log('Earth texture loaded successfully');
-                },
-                function(progress) {
-                    // Progress callback
-                    console.log('Loading texture...', progress);
-                },
-                function(error) {
-                    // Error callback - use procedural Earth-like appearance
-                    console.log('Texture failed to load, using procedural Earth');
-                    material.color.setHex(0x2244aa);
-                    material.emissive.setHex(0x001133);
-                    material.emissiveIntensity = 0.1;
-                }
-            );
-            
             globe = new THREE.Mesh(geometry, material);
             globe.castShadow = true;
             globe.receiveShadow = true;
-            scene.add(globe);
+            globeGroup.add(globe);
+
+            // The supplied asset is a verified 2:1 equirectangular Earth map with CORS support.
+            const textureLoader = new THREE.TextureLoader();
+            textureLoader.setCrossOrigin('anonymous');
+            textureLoader.load(
+                earthTextureUrl,
+                (texture) => {
+                    texture.colorSpace = THREE.SRGBColorSpace;
+                    texture.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+                    texture.minFilter = THREE.LinearMipmapLinearFilter;
+                    texture.magFilter = THREE.LinearFilter;
+                    texture.wrapS = THREE.RepeatWrapping;
+                    globe.material.map = texture;
+                    globe.material.color.set(0xffffff);
+                    globe.material.emissive.set(0x000000);
+                    globe.material.emissiveIntensity = 0;
+                    globe.material.needsUpdate = true;
+                    document.body.classList.add('earth-texture-ready');
+                },
+                undefined,
+                () => {
+                    console.warn('Earth texture could not load; retaining the high-contrast globe fallback.');
+                    document.body.classList.add('earth-texture-fallback');
+                }
+            );
 
             // Add atmosphere with enhanced glow
             const atmosphereGeometry = new THREE.SphereGeometry(2.15, 64, 64);
@@ -1140,7 +1215,7 @@ callBridge("get_tables").then(tables => {
                 side: THREE.BackSide
             });
             const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
-            scene.add(atmosphere);
+            globeGroup.add(atmosphere);
 
             // Add outer glow
             const glowGeometry = new THREE.SphereGeometry(2.3, 32, 32);
@@ -1151,7 +1226,7 @@ callBridge("get_tables").then(tables => {
                 side: THREE.BackSide
             });
             const glow = new THREE.Mesh(glowGeometry, glowMaterial);
-            scene.add(glow);
+            globeGroup.add(glow);
         }
 
         function addEnhancedLighting() {
@@ -1202,24 +1277,48 @@ callBridge("get_tables").then(tables => {
             scene.add(starField);
         }
 
+        function latLngToVector3(lat, lng, radius = 2.05) {
+            const phi = (90 - lat) * (Math.PI / 180);
+            const theta = (lng + 180) * (Math.PI / 180);
+            return new THREE.Vector3(
+                -(radius * Math.sin(phi) * Math.cos(theta)),
+                radius * Math.cos(phi),
+                radius * Math.sin(phi) * Math.sin(theta)
+            );
+        }
+
         function addHubs() {
-            hubsData.forEach((hubData, index) => {
+            const cairo = hubsData.find(hub => hub.type === 'flagship');
+            hubsData.forEach((hubData) => {
                 const hub = createHub(hubData);
                 hubs.push(hub);
-                scene.add(hub);
+                globeGroup.add(hub);
+                if (cairo && hubData !== cairo) addConnectionArc(cairo, hubData);
             });
+        }
+
+        function addConnectionArc(fromHub, toHub) {
+            const start = latLngToVector3(fromHub.lat, fromHub.lng, 2.10);
+            const end = latLngToVector3(toHub.lat, toHub.lng, 2.10);
+            const apex = start.clone().add(end).normalize().multiplyScalar(2.65);
+            const curve = new THREE.QuadraticBezierCurve3(start, apex, end);
+            const geometry = new THREE.BufferGeometry().setFromPoints(curve.getPoints(56));
+            const material = new THREE.LineBasicMaterial({
+                color: 0xffd166,
+                transparent: true,
+                opacity: 0.78
+            });
+            const arc = new THREE.Line(geometry, material);
+            arc.userData = { isConnectionArc: true, from: fromHub.name, to: toHub.name };
+            globeGroup.add(arc);
         }
 
         function createHub(hubData) {
             const group = new THREE.Group();
-            
-            // Convert lat/lng to 3D coordinates
-            const phi = (90 - hubData.lat) * (Math.PI / 180);
-            const theta = (hubData.lng + 180) * (Math.PI / 180);
-            
-            const x = -(2.05 * Math.sin(phi) * Math.cos(theta));
-            const y = 2.05 * Math.cos(phi);
-            const z = 2.05 * Math.sin(phi) * Math.sin(theta);
+            const position = latLngToVector3(hubData.lat, hubData.lng);
+            const x = position.x;
+            const y = position.y;
+            const z = position.z;
             
             // Create hub marker with enhanced design
             const geometry = hubData.type === 'flagship' ? 
@@ -1279,9 +1378,9 @@ callBridge("get_tables").then(tables => {
                 }
             });
             
-            // Rotate globe slowly
-            if (globe) {
-                globe.rotation.y += 0.001;
+            // Earth, markers and Cairo-to-hub routes rotate together to preserve geographic alignment.
+            if (globeGroup && !isGlobeInteracting) {
+                globeGroup.rotation.y += 0.0010;
             }
             
             if (renderer && scene && camera) {
@@ -1296,6 +1395,7 @@ callBridge("get_tables").then(tables => {
             const mouse = new THREE.Vector2();
             
             renderer.domElement.addEventListener('click', onHubClick);
+            setupGlobeNavigation();
             
             function onHubClick(event) {
                 const rect = renderer.domElement.getBoundingClientRect();
@@ -1332,6 +1432,35 @@ callBridge("get_tables").then(tables => {
             window.addEventListener('resize', onWindowResize);
         }
 
+        function setupGlobeNavigation() {
+            let pointerStart = null;
+            const canvas = renderer.domElement;
+            canvas.style.touchAction = 'none';
+            canvas.addEventListener('pointerdown', (event) => {
+                pointerStart = { x: event.clientX, y: event.clientY };
+                isGlobeInteracting = true;
+                canvas.setPointerCapture(event.pointerId);
+            });
+            canvas.addEventListener('pointermove', (event) => {
+                if (!pointerStart || !globeGroup) return;
+                const dx = event.clientX - pointerStart.x;
+                const dy = event.clientY - pointerStart.y;
+                globeGroup.rotation.y += dx * 0.008;
+                globeGroup.rotation.x = Math.max(-0.65, Math.min(0.65, globeGroup.rotation.x + dy * 0.004));
+                pointerStart = { x: event.clientX, y: event.clientY };
+            });
+            const endInteraction = () => {
+                pointerStart = null;
+                window.setTimeout(() => { isGlobeInteracting = false; }, 1300);
+            };
+            canvas.addEventListener('pointerup', endInteraction);
+            canvas.addEventListener('pointercancel', endInteraction);
+            canvas.addEventListener('wheel', (event) => {
+                event.preventDefault();
+                camera.position.z = Math.max(3.1, Math.min(7, camera.position.z + event.deltaY * 0.003));
+            }, { passive: false });
+        }
+
         function onWindowResize() {
             if (camera && renderer) {
                 const container = document.getElementById('globe-canvas');
@@ -1344,7 +1473,6 @@ callBridge("get_tables").then(tables => {
         function showHubInfo(hubData) {
             const panel = document.getElementById('hubInfoPanel');
             const content = document.getElementById('hubInfoContent');
-            
             let detailsHtml = '';
             if (hubData.details) {
                 for (const [key, value] of Object.entries(hubData.details)) {
@@ -1352,52 +1480,21 @@ callBridge("get_tables").then(tables => {
                         <div class="hub-detail">
                             <h4>${key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</h4>
                             <p>${value}</p>
-                        </div>
-                    `;
+                        </div>`;
                 }
             }
-
-            // Add website link and external data connections
-            let websiteLink = '';
-            let externalLinks = '';
-            
-            if (hubData.name.includes('TAWASOL')) {
-                websiteLink = `<a href="https://tawasol-egypt-platform-dvcvvr9uh-tawasolnow.vercel.app" target="_blank" class="hub-link">Visit TAWASOL Platform</a>`;
-                externalLinks = `
-                    <div class="hub-detail">
-                        <h4>Connected Platforms</h4>
-                        <p>
-                            <a href="https://preview--egypt-omics-uber.lovable.app/" target="_blank" class="hub-link">Egypt Omics Platform</a><br>
-                            <a href="https://dyh6i3c9o0ll.manus.space" target="_blank" class="hub-link">Telemedicine Hub</a><br>
-                            <a href="https://qjh9iec5vx5p.manus.space" target="_blank" class="hub-link">Research Assistant</a>
-                        </p>
-                    </div>
-                `;
-            } else if (hubData.name.includes('Cambridge')) {
-                websiteLink = `<a href="https://www.crick.ac.uk" target="_blank" class="hub-link">Visit Francis Crick Institute</a>`;
-            } else if (hubData.name.includes('Boston')) {
-                websiteLink = `<a href="https://www.broadinstitute.org" target="_blank" class="hub-link">Visit Broad Institute</a>`;
-            } else if (hubData.name.includes('Singapore')) {
-                websiteLink = `<a href="https://www.a-star.edu.sg/biopolis" target="_blank" class="hub-link">Visit Biopolis</a>`;
-            }
-            
+            const directLinks = [
+                hubData.officialUrl && `<a class="hub-link" href="${hubData.officialUrl}" target="_blank" rel="noopener noreferrer">Official site ↗</a>`,
+                hubData.mapsUrl && `<a class="hub-link" href="${hubData.mapsUrl}" target="_blank" rel="noopener noreferrer">Open location ↗</a>`,
+                hubData.sourceUrl && `<a class="hub-link" href="${hubData.sourceUrl}" target="_blank" rel="noopener noreferrer">Research / source ↗</a>`
+            ].filter(Boolean).join('');
             content.innerHTML = `
                 <h3>${hubData.name}</h3>
-                <div class="hub-detail">
-                    <h4>Location</h4>
-                    <p>${hubData.country}</p>
-                </div>
-                <div class="hub-detail">
-                    <h4>Description</h4>
-                    <p>${hubData.description}</p>
-                </div>
+                <p class="hub-status">${hubData.status || 'Network reference hub'}</p>
+                <div class="hub-detail"><h4>Location</h4><p>${hubData.country}</p></div>
+                <div class="hub-detail"><h4>Network context</h4><p>${hubData.description}</p></div>
                 ${detailsHtml}
-                ${externalLinks}
-                <div class="hub-actions">
-                    ${websiteLink}
-                </div>
-            `;
-            
+                ${directLinks ? `<div class="hub-link-list">${directLinks}</div>` : ''}`;
             panel.classList.add('active');
         }
 
@@ -1434,22 +1531,12 @@ callBridge("get_tables").then(tables => {
             }, 500); // Reduced from 2000ms to 500ms for faster loading
         }
 
-        // Initialize when page loads
-        let initCalled = false;
-        window.addEventListener('load', () => {
-            if (!initCalled) {
-                initCalled = true;
-                init();
-            }
-        });
-        
-        // Fallback initialization in case load event doesn't fire
-        document.addEventListener('DOMContentLoaded', () => {
-            if (!initCalled) {
-                initCalled = true;
-                setTimeout(init, 100);
-            }
-        });
+        // A single guarded startup path prevents duplicate renderers and duplicate loading events.
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init, { once: true });
+        } else {
+            init();
+        }
 
         // Supabase Configuration
         const SUPABASE_URL = 'https://vrfyjirddfdnwuffzqhb.supabase.co';

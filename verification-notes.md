@@ -1,0 +1,8 @@
+# Local verification notes
+
+- 2026-08-23: The supplied Cloudinary asset was verified as a CORS-enabled 1280×640 (2:1) equirectangular world map.
+- 2026-08-23: The live local page reports `earth-texture-ready` with no fallback state. After the hero-layout, route and initial-orientation revisions, the Earth map visibly renders with Egypt/North-East Africa front-facing, Cairo as the central gold node, and Cairo-to-hub gold arcs inside the primary hero.
+- 2026-08-23: The revised page exposes one renderer only, and the main hub experience provides linked official sites, maps, and source/research destinations from the interactive drawer.
+- 2026-08-23: The first hub-selection test exposed a responsive overflow at an 884px viewport: Cairo projected beyond the clipped canvas. The desktop breakpoint will be widened before final verification so visible hub markers are selectable on tablet-sized screens.
+- 2026-08-23: Follow-up geometry verification confirmed Cairo projects inside the full desktop canvas. The screenshot is downscaled by the browser viewer; the renderer itself retains an in-bounds 1200px canvas at desktop width.
+- 2026-08-23: The Cairo hub drawer was rendered in the live page and contains the project-anchor status, facilities, research context, an Open Location destination and a Research / Source destination. Comparable hub profiles additionally expose official-site links.
