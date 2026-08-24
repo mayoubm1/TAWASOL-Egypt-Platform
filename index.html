@@ -389,6 +389,133 @@
             line-height: 1.7;
         }
 
+        /* Cairo ecosystem pathways: a TELsTP-specific navigation layer beneath the globe. */
+        .pathways-section {
+            padding: 0 1.25rem 6rem;
+            background: radial-gradient(circle at 50% 0%, rgba(24, 82, 140, 0.18), transparent 48%), var(--night-sky);
+        }
+
+        .pathways-shell {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            border: 1px solid rgba(255, 215, 0, 0.18);
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.035);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 24px 70px rgba(0, 0, 0, 0.22);
+        }
+
+        .pathway-kicker {
+            margin: 0 0 0.7rem;
+            color: var(--gold);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .pathway-heading {
+            max-width: 760px;
+            margin: 0;
+            color: var(--papyrus);
+            font-size: clamp(1.85rem, 4vw, 3rem);
+            line-height: 1.1;
+        }
+
+        .pathway-intro {
+            max-width: 760px;
+            margin: 1rem 0 2rem;
+            color: rgba(255, 255, 255, 0.72);
+            line-height: 1.7;
+        }
+
+        .pathway-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1.15rem;
+        }
+
+        .pathway-card {
+            min-height: 168px;
+            padding: 1.15rem;
+            border: 1px solid rgba(125, 203, 255, 0.18);
+            border-radius: 15px;
+            background: linear-gradient(145deg, rgba(22, 55, 89, 0.65), rgba(7, 14, 36, 0.86));
+            color: var(--papyrus);
+            text-align: left;
+            cursor: pointer;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .pathway-card:hover,
+        .pathway-card:focus-visible,
+        .pathway-card.active {
+            outline: none;
+            transform: translateY(-4px);
+            border-color: rgba(255, 215, 0, 0.65);
+            background: linear-gradient(145deg, rgba(27, 85, 126, 0.8), rgba(14, 25, 59, 0.95));
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.26), 0 0 0 1px rgba(255, 215, 0, 0.08) inset;
+        }
+
+        .pathway-card-index {
+            display: block;
+            margin-bottom: 1.9rem;
+            color: var(--gold);
+            font-family: monospace;
+            font-size: 0.76rem;
+            letter-spacing: 0.1em;
+        }
+
+        .pathway-card strong {
+            display: block;
+            font-size: 1rem;
+            line-height: 1.25;
+        }
+
+        .pathway-card span:last-child {
+            display: block;
+            margin-top: 0.6rem;
+            color: rgba(255, 255, 255, 0.58);
+            font-size: 0.78rem;
+            line-height: 1.45;
+        }
+
+        .pathway-focus {
+            display: grid;
+            grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1fr);
+            gap: 1.5rem;
+            padding: 1.4rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 215, 0, 0.22);
+            background: rgba(1, 8, 25, 0.62);
+        }
+
+        .pathway-focus-label {
+            color: var(--gold);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .pathway-focus h3 { margin: 0 0 0.6rem; color: var(--papyrus); font-size: 1.3rem; }
+        .pathway-focus p { margin: 0; color: rgba(255, 255, 255, 0.74); line-height: 1.65; }
+        .pathway-focus .pathway-status { margin-top: 0.85rem; color: #91d6ff; font-size: 0.84rem; }
+
+        @media (max-width: 980px) {
+            .pathway-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 620px) {
+            .pathways-section { padding: 0 0.85rem 4rem; }
+            .pathways-shell { padding: 1.25rem; border-radius: 18px; }
+            .pathway-grid { grid-template-columns: 1fr; }
+            .pathway-card { min-height: 125px; }
+            .pathway-card-index { margin-bottom: 0.8rem; }
+            .pathway-focus { grid-template-columns: 1fr; gap: 0.6rem; }
+        }
+
         @media (max-width: 1100px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -810,6 +937,50 @@
         </div>
     </section>
 
+    <!-- Cairo Ecosystem Pathways: original TELsTP interaction layer -->
+    <section class="pathways-section" id="pathways" aria-labelledby="pathways-title">
+        <div class="pathways-shell">
+            <p class="pathway-kicker">Cairo ecosystem pathways</p>
+            <h2 class="pathway-heading" id="pathways-title">From a global connection to a practical pathway.</h2>
+            <p class="pathway-intro">The globe shows where the conversation can travel. These pathways clarify how TELsTP intends to turn that connection into research, care, learning, public dialogue and coordinated intelligence. Select a pathway to read its role in the ecosystem.</p>
+            <div class="pathway-grid" role="list" aria-label="TELsTP ecosystem pathways">
+                <button class="pathway-card active" type="button" data-pathway="research" aria-pressed="true" role="listitem">
+                    <span class="pathway-card-index">01 / RESEARCH</span>
+                    <strong>Research Translation</strong>
+                    <span>From questions and datasets to collaborative discovery.</span>
+                </button>
+                <button class="pathway-card" type="button" data-pathway="health" aria-pressed="false" role="listitem">
+                    <span class="pathway-card-index">02 / HEALTH</span>
+                    <strong>Precision Health</strong>
+                    <span>Connecting care, genomics and responsible clinical pathways.</span>
+                </button>
+                <button class="pathway-card" type="button" data-pathway="education" aria-pressed="false" role="listitem">
+                    <span class="pathway-card-index">03 / EDUCATION</span>
+                    <strong>Education &amp; Talent</strong>
+                    <span>Preparing learners to participate in real scientific work.</span>
+                </button>
+                <button class="pathway-card" type="button" data-pathway="intelligence" aria-pressed="false" role="listitem">
+                    <span class="pathway-card-index">04 / INTELLIGENCE</span>
+                    <strong>AI Coordination</strong>
+                    <span>Making cross-hub knowledge easier to navigate and govern.</span>
+                </button>
+                <button class="pathway-card" type="button" data-pathway="broadcast" aria-pressed="false" role="listitem">
+                    <span class="pathway-card-index">05 / DIALOGUE</span>
+                    <strong>Public Dialogue</strong>
+                    <span>Translating science into accessible, accountable communication.</span>
+                </button>
+            </div>
+            <article class="pathway-focus" id="pathwayFocus" aria-live="polite">
+                <div class="pathway-focus-label">Selected pathway</div>
+                <div>
+                    <h3>Research Translation</h3>
+                    <p>Research Translation is the bridge between the Cairo anchor, global reference hubs and the M2-3M research direction: a clear route from a question, through collaboration and evidence, toward responsible scientific output.</p>
+                    <p class="pathway-status">Strategic pathway — not a claim of a currently deployed service.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
     <!-- Ministries Section -->
     <section class="ministries-section" id="ministries">
         <div class="globe-container">
@@ -1066,6 +1237,7 @@
             createParticles();
             initGlobe();
             setupEventListeners();
+            setupPathwayLayer();
             animateTimelineItems();
             hideLoading();
         }
@@ -1386,6 +1558,53 @@
             if (renderer && scene && camera) {
                 renderer.render(scene, camera);
             }
+        }
+
+        function setupPathwayLayer() {
+            const pathwayContent = {
+                research: {
+                    title: 'Research Translation',
+                    body: 'Research Translation is the bridge between the Cairo anchor, global reference hubs and the M2-3M research direction: a clear route from a question, through collaboration and evidence, toward responsible scientific output.'
+                },
+                health: {
+                    title: 'Precision Health',
+                    body: 'Precision Health frames a future TELsTP pathway for connecting genomics, telemedicine and care coordination. It is presented here as a strategic direction, not as a statement that a clinical service is already live.'
+                },
+                education: {
+                    title: 'Education & Talent',
+                    body: 'Education & Talent connects life-science learning to supervised research participation, giving the ecosystem a human pathway from learning to contribution and future leadership.'
+                },
+                intelligence: {
+                    title: 'AI Coordination',
+                    body: 'AI Coordination describes the OmniCognitor-oriented role of making knowledge, research contexts and cross-hub workflows easier to navigate with accountable human oversight.'
+                },
+                broadcast: {
+                    title: 'Public Dialogue',
+                    body: 'Public Dialogue turns complex science into understandable communication and public engagement, linking research culture to the TELsTP broadcasting and knowledge-sharing direction.'
+                }
+            };
+            const cards = Array.from(document.querySelectorAll('.pathway-card'));
+            const focus = document.getElementById('pathwayFocus');
+            if (!cards.length || !focus) return;
+
+            cards.forEach((card) => {
+                card.addEventListener('click', () => {
+                    const selected = pathwayContent[card.dataset.pathway];
+                    if (!selected) return;
+                    cards.forEach((item) => {
+                        const active = item === card;
+                        item.classList.toggle('active', active);
+                        item.setAttribute('aria-pressed', String(active));
+                    });
+                    focus.innerHTML = `
+                        <div class="pathway-focus-label">Selected pathway</div>
+                        <div>
+                            <h3>${selected.title}</h3>
+                            <p>${selected.body}</p>
+                            <p class="pathway-status">Strategic pathway — not a claim of a currently deployed service.</p>
+                        </div>`;
+                });
+            });
         }
 
         // Event listeners
